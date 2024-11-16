@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTful API</title>
+
+    <link rel="icon" type="image/png" href="./imgs/favicon.ico">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./_header.css">
+    <link rel="stylesheet" href="./_footer.css">
+
+</head>
+
+<body>
+
+    <header id="header">
+
+        <div>
+            <h1 id="function">RESTful API</h1>
+        </div>
+
+    </header>
+
+    <main>
+
+        <article>
+
+            <h2>Setup</h2>
+
+            <h3>Visual Studio Code</h3>
+            <p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/</a></p>
+
+            <h3>Laragon</h3>
+            <p><a href="https://laragon.org/" target="_blank" rel="noopener noreferrer">https://laragon.org/</a></p>
+
+            <h3>XAMPP</h3>
+            <p><a href="https://www.apachefriends.org/de/index.html" target="_blank" rel="noopener noreferrer">https://www.apachefriends.org/de/index.html</a></p>
+            
+            <h3>PHP</h3>
+            <p><a href="https://www.php.net/" target="_blank" rel="noopener noreferrer">https://www.php.net/</a></p>
+
+            <h3>MySQL</h3>
+            <p><a href="https://www.mysql.com/" target="_blank" rel="noopener noreferrer">https://www.mysql.com/</a></p>
+
+            <h3>Apache</h3>
+            <p><a href="https://httpd.apache.org/" target="_blank" rel="noopener noreferrer">https://httpd.apache.org/</a></p>
+
+            <h3>Composer</h3>
+            <p><a href="https://getcomposer.org/" target="_blank" rel="noopener noreferrer">https://getcomposer.org/</a></p>
+
+        </article>
+
+        <article>
+
+            <h2>VS Code</h2>
+
+            <h3>Extensions</h3>
+            <p>indent-rainbow (oderwat) | vscode-icons (VSCode Icons Team) | Live Server (Ritwick Dey) | Prettier (Prettier) | Color Highlight (Sergii N) | Auto Complete Tag (Jun Han)</p>
+            <p>SonarLint (SonarSource) | IntelliCode (Microsoft) | IntelliCode API Usage Examples (Microsoft)</p>
+            <p>Remote Repositories (Microsoft) | GitLens (GitKraken) | GitHub Pull Requests (GitHub) | GitHub Repositories (GitHub)</p>
+            <p>ESLint (Microsoft) | PHP Server (brapifra) | PHP Intelephense (Ben Mewburn) | PHP IntelliSense (Damjan Cvetko) | PHP Namespace Resolver (Mehedi Hassan) | Easy LESS (mrcrowl)</p>
+            <p>TODO Highlight (Wayou Liu) | N7 Color Themes (N7n)</p>
+
+            <h3>Shortcuts</h3>
+            <p><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf</a></p>
+
+            <h4>General</h4>
+            <div class="grid table-2">
+                <p>Ctrl+Shift+P</p><p>Show Command Palette</p>
+            </div>
+
+            <h4>Basic editing</h4>
+            <div class="grid table-2">
+                <p>Ctrl+X</p><p>Cut line (empty selection)</p>
+                <p>Ctrl+C</p><p>Copy line (empty selection)</p>
+                <p>Alt+ ↑ / ↓</p><p>Move line up/down</p>
+                <p>Shift+Alt + ↓ / ↑</p><p>Copy line up/down</p>
+                <p>Ctrl+°</p><p>Comment</p>
+            </div>
+
+            <h4>Search and replace</h4>
+            <div class="grid table-2">
+                <p>Ctrl+F</p><p>Find</p>
+                <p>Ctrl+Shift+F</p><p>Search across files</p>
+            </div>
+
+            <h4>Rich languages editing</h4>
+            <div class="grid table-2">
+                <p>Shift+Alt+F</p><p>Format document</p>
+                <p>Ctrl+K Ctrl+F</p><p>Format selection</p>
+            </div>
+
+            <h4>Display</h4>
+            <div class="grid table-2">
+                <p>Ctrl+K Z</p><p>Zen Mode (Esc Esc to exit)</p>
+            </div>
+
+        </article>
+
+        <article>
+
+            <h2>Laragon</h2>
+            <p>Settings > General > Document Root: C:\nano\core\prx</p>
+            <p>Menu > Apache > sites-enabled > auto.api.test.conf</p>
+            <pre class="code-block"><code>&lt;VirtualHost *:80&gt; 
+    DocumentRoot "C:/nano/core/prx/api/public"
+    ServerName api.test
+    ServerAlias *.api.test
+    &lt;Directory "C:/nano/core/prx/api/public"&gt;
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+
+# If you want to use SSL, enable it by going to Menu &gt; Apache &gt; SSL &gt; Enabled</code></pre>
+            <p>Menu > Apache > SSL > Enabled</p>
+            <p>Menu > prx > api</p>
+
+        </article>
+
+        <article>
+
+            <h2>Was ist eine API?</h2>
+
+            <h3>Web-Interface</h3>
+            <div class="grid images-api">
+                <img src="./imgs/person.svg" alt="user">
+                <div class="grid images-arrow">
+                    <p><a href="https://randomuser.me/" target="_blank" rel="noopener noreferrer">https://randomuser.me/</a></p>
+                    <img src="./imgs/arrow-right.svg" alt="">
+                    <img src="./imgs/arrow-left.svg" alt="">
+                    <img src="./imgs/code.svg" alt="">
+                </div>
+                <img src="./imgs/server.svg" alt="">
+            </div>
+
+            <hr>
+            
+            <h3>API</h3>
+            <div class="grid images-api">
+                <img src="./imgs/gear.svg" alt="">
+                <div class="grid images-arrow">
+                    <p><a href="https://randomuser.me/api" target="_blank" rel="noopener noreferrer">https://randomuser.me/api</a></p>
+                    <img src="./imgs/arrow-right.svg" alt="">
+                    <img src="./imgs/arrow-left.svg" alt="">
+                    <img src="./imgs/json.svg" alt="">    
+                </div>
+                <img src="./imgs/server.svg" alt="">
+            </div>
+
+        </article>
+
+        <article>
+
+            <h2>API</h2>
+            <section class="grid">
+
+                <h3>Request</h3>
+                <div>
+                    <div>
+                        <p>Headers</p>
+                        <p class="small">Content-Type: application/json</p>
+                        <p class="small">Authorization: Basic ZGVtbzpwQDU1dzByZA==</p>
+                    </div>
+                    <div>
+                        <p>Method</p>
+                        <p class="small">GET POST PUT PATCH DELETE</p>
+                    </div>
+                    <div>
+                        <p>URL</p>
+                    </div>
+                    <div>
+                        <p>Body</p>
+                        <p class="small">data</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="grid images-api">
+                <img src="./imgs/gear.svg" alt="">
+                <div class="grid images-arrow">
+                    <img src="./imgs/arrow-right.svg" alt="">
+                    <img src="./imgs/arrow-left.svg" alt="">
+                </div>
+                <img src="./imgs/server.svg" alt="">
+            </div>
+
+            <section class="grid">
+
+                <h3>Response</h3>
+                <div>
+                    <div>
+                        <p>Status code</p>
+                        <p class="small">200 404 500</p>
+                        <p class="small"><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank" rel="noopener noreferrer" class="small">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></p>
+                    </div>
+                    <div>
+                        <p>Headers</p>
+                        <p class="small">Content-Type: application/json</p>
+                    </div>
+                    <div>
+                        <p>Body</p>
+                        <p class="small">data</p>
+                    </div>
+                </div>
+
+            </section>
+
+        </article>
+
+        <article id="restful">
+
+            <p><a href="#frontcontroller" class="inner-link">#frontcontroller</a></p>
+            <p><a href="#router" class="inner-link">#router</a></p>
+
+            <h2>Was ist eine RESTful API?</h2>
+            <div class="grid images-api">
+                <img src="./imgs/gear.svg" alt="">
+                <div class="grid images-arrow">
+                    <img src="./imgs/arrow-right.svg" alt="">
+                    <img src="./imgs/arrow-left.svg" alt="">
+                </div>
+                <img src="./imgs/server.svg" alt="">
+            </div>
+            <div class="grid table-2">
+
+                <p>Method</p>
+                <p>URL /resource/id</p>
+                <p>GET</p>
+                <p class="blue">/products</p>
+                <p>GET</p>
+                <p class="orange">/products/123</p>
+                <p>POST</p>
+                <p class="blue">/products</p>
+                <p>PUT or PATCH</p>
+                <p class="orange">/products/123</p>
+                <p>DELETE</p>
+                <p class="orange">/products/123</p>
+
+            </div>
+
+        </article>
+
+        <article>
+
+            <h2>URL rewriting</h2>
+            <p><a href="https://www.sitepoint.com/htaccess-for-all/" target="_blank" rel="noopener noreferrer">https://www.sitepoint.com/htaccess-for-all/</a></p>
+
+            <h3>public/.htaccess</h3>
+            <pre class="code-block"><code># Enable the rewrite engine
+RewriteEngine On
+
+# Check if the requested filename is not a regular file
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Check if the requested filename is not a directory
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Check if the requested filename is not a symbolic link
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# If all conditions are met, rewrite the request to index.php
+RewriteRule . index.php [L]  # Last rule, stop processing further rules</code></pre>
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>&lt;php
+
+echo 'meow';
+
+</code></pre>
+
+            <p><a href="https://api.test/cats" target="_blank" rel="noopener noreferrer">https://api.test/cats</a></p>
+            <p><a href="https://api.test/meow" target="_blank" rel="noopener noreferrer">https://api.test/meow</a></p>
+
+            <p><a href="https://api.test/index.html" target="_blank" rel="noopener noreferrer">https://api.test/index.html</a></p>
+            
+            <h3>/.htaccess</h3>
+            <pre class="code-block"><code># Enable the Rewrite Engine to allow URL rewriting
+RewriteEngine on
+
+# Condition: Check if the HTTP host is either 'api.test' or 'www.api.test'
+# [NC] makes the match case-insensitive, and [OR] allows multiple conditions.
+RewriteCond %{HTTP_HOST} ^api.test$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.api.test$ [NC]
+
+# Condition: Ensure the requested URI is NOT already inside the /public directory.
+# This prevents an infinite loop of redirects when accessing files within /public.
+RewriteCond %{REQUEST_URI} !^/public/
+
+# Rule: If the above conditions are met, redirect the request to /public.
+# ^(.*)$ matches any URL, and /public/$1 rewrites it to /public while preserving the original path.
+RewriteRule ^(.*)$ /public/$1 [L]</code></pre>
+            
+        </article>
+
+        <article>
+
+            <h2>Logging – dd()</h2>
+            <p>dump and die</p>
+            <h3>App/Core/functions.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+function dd($variable) {
+    echo '&lt;pre style="background: #f4f4f4; color: #333; padding: 10px; border: 1px solid #ccc;"&gt;';
+    var_dump($variable);
+    echo '&lt;/pre&gt;';
+    die();
+}</code></pre>
+            <p><a href="https://www.w3schools.com/php/func_var_var_dump.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/func_var_var_dump.asp</a></p>
+            <p><a href="https://www.php.net/manual/de/function.var-dump.php" target="_blank" rel="noopener noreferrer">https://www.php.net/manual/de/function.var-dump.php</a></p>
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>const BASE_PATH = __DIR__ . "/../";
+
+require str_replace('/', DIRECTORY_SEPARATOR, BASE_PATH  . 'App/Core/functions.php');
+</code></pre>
+            <p><a href="https://www.w3schools.com/php/php_magic_constants.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/php_magic_constants.asp</a></p>
+            <p><a href="https://www.php.net/manual/en/language.constants.magic.php#constant.dir" target="_blank" rel="noopener noreferrer">https://www.php.net/...#constant.dir</a></p>
+            <p><a href="https://www.php.net/manual/en/dir.constants.php" target="_blank" rel="noopener noreferrer">https://www.php.net/manual/en/dir.constants.php</a></p>
+
+        </article>
+
+        <article>
+
+            <h2>base_path()</h2>
+            <h3>App/Core/functions.php</h3>
+            <pre class="code-block"><code>function base_path($path) {
+    return str_replace('/', DIRECTORY_SEPARATOR, BASE_PATH . $path);
+}</code></pre>
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>echo base_path('test/test.php');</code></pre>
+
+        </article>
+
+        <article id="frontcontroller">
+
+            <p><a href="#restful" class="inner-link">#restful</a></p>
+            
+            <h2>Front controller (resource, id, request method)</h2>
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+// Extracts the URL path without the query string
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+dd($path);
+dd($method);
+
+</code></pre>
+            <p><a href="https://api.test/cats?query=test" target="_blank" rel="noopener noreferrer">https://api.test/cats?query=test</a></p>
+            <p><a href="https://api.test/cats/1?query=test" target="_blank" rel="noopener noreferrer">https://api.test/cats/1?query=test</a></p>
+            <p><a href="https://api.test/cats/1/whatever?query=test" target="_blank" rel="noopener noreferrer">https://api.test/cats/1/whatever?query=test</a></p>
+
+            <p><a href="https://www.w3schools.com/php/php_superglobals_server.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/php_superglobals_server.asp</a></p>
+            <p><a href="https://www.php.net/manual/en/reserved.variables.server.php" target="_blank" rel="noopener noreferrer">https://www.php.net/manual/en/reserved.variables.server.php</a></p>
+            <p><a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener noreferrer">https://www.php.net/manual/en/function.parse-url.php</a></p>
+
+
+        </article>
+
+        <article>
+
+            <h2>spl_autoload_register()</h2>
+            <p>autoloading classes</p>
+
+            <h3>App/Core/Meow.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+class Meow {
+    protected $meow_variable = 'meow';
+    public function meow_method() {
+        echo $this->meow_variable;
+    }
+}
+</code></pre>
+
+            <h3>public/index.php (1)</h3>
+            <p></p>
+            <pre class="code-block"><code>require base_path('App/Core/Meow.php');
+$meow = new Meow;
+$meow->meow_method();
+</code></pre>
+
+            <h3>public/index.php (2)</h3>
+            <pre class="code-block"><code>spl_autoload_register(function($class){
+    dd($class);
+});
+
+$meow = new Meow;
+</code></pre>
+
+            <h3>public/index.php (3)</h3>
+            <pre class="code-block"><code>spl_autoload_register(function($class){
+    require base_path("App/Core/$class.php");
+});
+
+$meow = new Meow;
+$meow->meow_method();
+</code></pre>
+
+            <h3>public/index.php (4)</h3>
+            <pre class="code-block"><code>spl_autoload_register(function($class){
+    require base_path("App/Core/$class.php");
+});
+</code></pre>
+
+            <p><a href="https://www.php.net/manual/de/function.spl-autoload-register.php" target="_blank" rel="noopener noreferrer">https://www.php.net/manual/de/function.spl-autoload-register.php</a></p>
+            <p><a href="https://stackoverflow.com/questions/60918843/how-to-create-a-psr-4-autoloader-for-my-project" target="_blank" rel="noopener noreferrer">https://stackoverflow.com/questions/60918843/how-to-create-a-psr-4-autoloader-for-my-project</a></p>
+
+        </article>
+
+        <article>
+
+            <h2>Router – logic</h2>
+            <h3>public/index.php (1)</h3>
+            <pre class="code-block"><code>if($path === '/cats' && $method === 'GET') {
+    echo 'GET cats';
+} else {
+    echo '404';
+}</code></pre>
+            <h3>public/index.php (2)</h3>
+            <pre class="code-block"><code>require base_path('App/Core/routes_playground.php');
+require base_path('App/Core/Router_playground.php');</code></pre>
+            <h3>App/Core/routes_playground.php (2)</h3>
+            <pre class="code-block"><code>$routes = [
+    [
+        'path' => '/cats',
+        'method' => 'GET',
+        'controller' => 'cats'
+    ]
+];</code></pre>
+            <h3>App/Core/Router_playground.php (2)</h3>
+            <pre class="code-block"><code>foreach ($routes as $key => $route) {
+    if($route['method'] == $method && $route['path'] == $path) {
+        echo $route['controller'];
+        return;
+    }
+}
+echo '404';</code></pre>
+
+        </article>
+
+        <article id="router">
+            <p><a href="#restful" class="inner-link">#restful</a></p>
+
+            <h2>Router</h2>
+
+            <h3>App/Core/routes.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+$router->get('/cats', 'App/Controllers/cats/index.php');</code></pre>
+
+            <h3>App/Core/Router.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+class Router {
+    protected $routes = [];
+
+    public function get($uri, $controller){
+        $this->add($uri, $controller, 'GET');
+    }
+    public function post($uri, $controller){
+        $this->add($uri, $controller, 'POST');
+    }
+    public function put($uri, $controller){
+        $this->add($uri, $controller, 'PUT');
+    }
+    public function patch($uri, $controller){
+        $this->add($uri, $controller, 'PATCH');
+    }
+    public function delete($uri, $controller){
+        $this->add($uri, $controller, 'DELETE');
+    }
+    protected function add($uri, $controller, $method){
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => $method
+        ];
+    }
+
+    public function route($uri, $method){
+        foreach ($this->routes as $route) {
+            if($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+                return require base_path($route['controller']);
+            }
+        }
+        $this->abort();
+    }
+    protected function abort($code = 404, $message = 'Not Found') {
+        http_response_code($code);
+        echo json_encode([
+            'status' => 'error',
+            'message' => $message
+        ]);
+        exit;
+    }
+}
+</code></pre>
+
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>$router = new Router();
+$routes = require base_path('App/Core/routes.php');
+$router->route($path, $method);</code></pre>
+
+            <h3>App/Controllers/cats/index.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+echo 'cats';
+</code></pre>
+
+            <p><a href="https://github.com/bramus/router" target="_blank" rel="noopener noreferrer">https://github.com/bramus/router</a></p>
+
+        </article>
+
+        <article>
+
+            <h2>Dynamic Routes</h2>
+
+            <h3>App/Core/routes.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+$router->get('/cats', 'App/Controllers/cats/index.php');
+$router->get('/cats/{id}', 'App/Controllers/cats/retrieve.php');</code></pre>
+
+            <h3>App/Core/Router.php</h3>
+            <pre class="code-block"><code>    protected function add($uri, $controller, $method){
+        // Convert dynamic segments into regex
+        $uri = preg_replace('/\{([a-z]+)\}/', '(?P&lt;\1&gt;[^/]+)', $uri);
+        $uri = '#^' . $uri . '$#';
+        $this-&gt;routes[] = [
+            'uri' =&gt; $uri,
+            'method' =&gt; $method,
+            'controller' =&gt; $controller
+        ];
+    }
+</code></pre>
+
+            <h3>App/Controllers/cats/retrieve.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+$id = $params['id'] ?? null;
+
+if ($id) {
+    // Perform operations with $id
+    echo "Updating cat with ID: $id";
+    // ... (handle the update logic here)
+} else {
+    echo "No ID provided.";
+}
+</code></pre>
+
+            <h3>$uri</h3>
+            <h4>route</h4>
+            <pre class="code-block"><code>/cats/{id}</code></pre>
+            <h4>preg_replace('<span class="red-text">/</span><span class="blue-text">\</span>{<span class="red-text">([</span>a<span class="red-text">-</span>z<span class="red-text">]+)</span><span class="blue-text">\</span>}<span class="red-text">/</span>', '(?P&lt;<span class="red-text">\1</span>&gt;[^/]+)', $uri);</h4>
+            <p>() group</p>
+            <p>[] expression</p>
+            <p>+ one or more</p>
+            <p>\1 referring to group ([a-z]+)</p>
+            <pre class="code-block"><code>{id}</code></pre>
+            <pre class="code-block"><code>(?P&lt;id&gt;[^/]+)</code></pre>
+            <pre class="code-block"><code>/cats/(?P&lt;id&gt;[^/]+)</code></pre>
+            <p>preg_replace(patterns, replacements, input);</p>
+            <p><a href="https://www.w3schools.com/php/func_regex_preg_replace.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/func_regex_preg_replace.asp</a></p>
+            <h4>'#^' . $uri . '$#';</h4>
+            <pre class="code-block"><code>#^/cats/(?P&lt;id&gt;[^/]+)$#</code></pre>
+            <h4>preg_match('<span class="red-text">#^</span>/cats/<span class="red-text">(?P</span>&lt;id&gt;<span class="red-text">[^/]+)$#</span>', '/cats/1', $matches);</h4>
+            <p>() group</p>
+            <p>[] expression</p>
+            <p># ... # beginning and end of pattern in PHP regex; used instead of / to avoid escaping slashes</p>
+            <p>^ start-of-string</p>
+            <p>$ end-of-string</p>
+            <p>(?P&lt;name&gt;...) named capturing groups; allows to reference the captured value by name in the resulting array</p>
+            <p>^ not</p>
+            <p>[^/] any character except for the forward slash (/)</p>
+            <p>+ one or more</p>
+
+            <p>preg_match(pattern, input, matches array)</p>
+            <p><a href="https://www.w3schools.com/php/func_regex_preg_match.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/func_regex_preg_match.asp</a></p>
+            <p><a href="https://www.w3schools.com/php/php_regex.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/php_regex.asp</a></p>
+            <p><a href="https://regexlearn.com/" target="_blank" rel="noopener noreferrer">https://regexlearn.com/</a></p>
+            <p><a href="https://regexone.com/" target="_blank" rel="noopener noreferrer">https://regexone.com/</a></p>
+
+            <p><a href="https://www.w3schools.com/php/func_array_filter.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/func_array_filter.asp</a></p>
+        </article>
+
+        <article>
+
+            <h2>Namespacing</h2>
+            <h3>App/Core/Router.php</h3>
+            <pre class="code-block"><code>namespace App\Core;</code></pre>
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>use App\Core\Router;
+
+// ...
+
+spl_autoload_register(function($class){
+    // dd($class);
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require base_path("$class.php");
+});
+</code></pre>
+            <p><a href="https://www.w3schools.com/php/php_string_escape.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/php/php_string_escape.asp</a></p>
+
+        </article>
+
+        <article>
+
+            <h2>Response</h2>
+
+            <h3>App/Core/Response.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+
+class Response
+{
+    const OK = 200;
+    const CREATED = 201;
+    const BAD_REQUEST = 400;
+    const NOT_FOUND = 404;
+    const FORBIDDEN = 403;
+    const SERVER_ERROR = 500;
+
+    // Sets the HTTP response code and sends JSON response
+    public static function json($data, $status = self::OK)
+    {
+        header('Content-Type: application/json');
+        http_response_code($status);
+        echo json_encode($data);
+    }
+}</code></pre>
+
+            <h3>App/Core/Router.php</h3>
+            <p>replace abort()</p>
+            <pre class="code-block"><code>        // Send a JSON response if the route is not found
+        Response::json([
+            'status' => 'error',
+            'message' => 'Not Found'
+        ], Response::NOT_FOUND);
+</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>MySQL Database</h2>
+            <img src="imgs/database_schema.jpg" alt="database schema">
+
+            <h3>SQL Statements</h3>
+            <pre class="code-block"><code>-- Table: tbl_lehrbetrieb
+CREATE TABLE tbl_lehrbetrieb (
+    id_lehrbetrieb INT PRIMARY KEY AUTO_INCREMENT,
+    firma VARCHAR(255),
+    strasse VARCHAR(255),
+    plz VARCHAR(10),
+    ort VARCHAR(255)
+);
+
+-- Table: tbl_countries
+CREATE TABLE tbl_countries (
+    id_countries INT PRIMARY KEY AUTO_INCREMENT,
+    country VARCHAR(255)
+);
+
+-- Table: tbl_lernende
+CREATE TABLE tbl_lernende (
+    id_lernende INT PRIMARY KEY AUTO_INCREMENT,
+    vorname VARCHAR(255),
+    nachname VARCHAR(255),
+    strasse VARCHAR(255),
+    plz VARCHAR(10),
+    ort VARCHAR(255),
+    fk_land INT,
+    geschlecht CHAR(1),
+    telefon VARCHAR(20),
+    handy VARCHAR(20),
+    email VARCHAR(255),
+    email_privat VARCHAR(255),
+    birthdate DATE,
+    FOREIGN KEY (fk_land) REFERENCES tbl_countries(id_countries)
+);
+-- Table: tbl_lernende (no ON DELETE CASCADE since it is a core table for individuals)
+
+-- Table: tbl_dozenten
+CREATE TABLE tbl_dozenten (
+    id_dozent INT PRIMARY KEY AUTO_INCREMENT,
+    vorname VARCHAR(255),
+    nachname VARCHAR(255),
+    strasse VARCHAR(255),
+    plz VARCHAR(10),
+    ort VARCHAR(255),
+    fk_land INT,
+    geschlecht CHAR(1),
+    telefon VARCHAR(20),
+    handy VARCHAR(20),
+    email VARCHAR(255),
+    birthdate DATE,
+    FOREIGN KEY (fk_land) REFERENCES tbl_countries(id_countries)
+);
+-- Table: tbl_dozenten (no cascade since this table is a core reference for instructors)
+
+-- Table: tbl_lehrbetrieb_lernende
+CREATE TABLE tbl_lehrbetrieb_lernende (
+    id_lehrbetrieb_lernende INT PRIMARY KEY AUTO_INCREMENT,
+    fk_lehrbetrieb INT,
+    fk_lernende INT,
+    start DATE,
+    ende DATE,
+    beruf VARCHAR(255),
+    FOREIGN KEY (fk_lehrbetrieb) REFERENCES tbl_lehrbetrieb(id_lehrbetrieb) ON DELETE CASCADE,
+    FOREIGN KEY (fk_lernende) REFERENCES tbl_lernende(id_lernende) ON DELETE CASCADE
+);
+
+-- Table: tbl_kurse
+CREATE TABLE tbl_kurse (
+    id_kurs INT PRIMARY KEY AUTO_INCREMENT,
+    kursnummer VARCHAR(50),
+    kursthema VARCHAR(255),
+    inhalt TEXT,
+    fk_dozent INT,
+    startdatum DATE,
+    enddatum DATE,
+    dauer INT,
+    FOREIGN KEY (fk_dozent) REFERENCES tbl_dozenten(id_dozent) ON DELETE SET NULL
+);
+
+-- Table: tbl_kurse_lernende
+CREATE TABLE tbl_kurse_lernende (
+    id_kurs_lernende INT PRIMARY KEY AUTO_INCREMENT,
+    fk_lernende INT,
+    fk_kurs INT,
+    role VARCHAR(255),
+    FOREIGN KEY (fk_lernende) REFERENCES tbl_lernende(id_lernende) ON DELETE CASCADE,
+    FOREIGN KEY (fk_kurs) REFERENCES tbl_kurse(id_kurs) ON DELETE CASCADE
+);</code></pre>
+
+            <p><a href="https://www.sql-practice.com/" target="_blank" rel="noopener noreferrer">https://www.sql-practice.com/</a></p>
+            <p><a href="https://www.w3schools.com/sql/sql_exercises.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/sql/sql_exercises.asp</a></p>
+            <p><a href="https://www.hackerrank.com/domains/sql" target="_blank" rel="noopener noreferrer">https://www.hackerrank.com/domains/sql</a></p>
+            <p><a href="https://www.w3schools.com/sql/" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/sql/</a></p>
+
+        </article>
+
+        <article>
+
+            <h2>PDO</h2>
+
+            <h3>App/Core/config.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+return [
+    'database' => [
+        'host' => 'localhost',
+        'port' => '3306',
+        'dbname' => 'kursverwaltung',
+        'charset' => 'utf8mb4',
+    ],
+];</code></pre>
+
+            <h3>App/Core/Database.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+use PDO;
+
+class Database
+{
+    protected $connection;
+
+    public function __construct($config, $username = 'root', $password = ''){
+        $dsn = 'mysql:' . http_build_query($config, '', ';');
+        $this->connection = new PDO($dsn, $username, $password, [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
+    }
+    public function query($query, $params = []){
+        $statement = $this->connection->prepare($query);
+        return $statement;
+    }
+
+}</code></pre>
+
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>use App\Core\Database;
+use App\Core\Router;
+
+$config = require base_path('App/Core/config.php');
+$db = new Database($config['database']);
+$query = 'SELECT * FROM tbl_countries';
+$result = $db->query($query);
+
+dd($result->fetchAll());</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>.env</h2>
+
+            <h3>/.env</h3>
+            <pre class="code-block"><code>DB_HOST=localhost
+DB_NAME=kursverwaltung
+DB_USER=root
+DB_PASSWORD=</code></pre>
+            
+            <h3>/.gitignore</h3>
+            <pre class="code-block"><code>.env</code></pre>
+
+            <h3>App/Core/LoadEnv.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+
+class LoadEnv {
+    public static function load($path) {
+        if (!file_exists($path)) return;
+
+        $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            if (strpos(trim($line), '#') === 0) continue;
+
+            list($key, $value) = explode('=', $line, 2);
+            $_ENV[trim($key)] = trim($value);
+        }
+    }
+}</code></pre>
+
+            <h3>App/Core/config.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\LoadEnv;
+
+LoadEnv::load(base_path('.env'));
+
+return [
+    'database' => [
+        'host' => $_ENV['DB_HOST'],
+        'port' => '3306',
+        'dbname' => $_ENV['DB_NAME'],
+        'user' => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'charset' => 'utf8mb4',
+    ],
+];</code></pre>
+            
+            <h3>App/Core/Database.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+use PDO;
+use PDOException;
+
+class Database
+{
+    protected $connection;
+
+    public function __construct($config){
+
+        $username = $config['user'] ?? 'root';
+        $password = $config['password'] ?? '';
+
+        $dsn = 'mysql:' . http_build_query($config, '', ';');
+        
+        try {
+            $this->connection = new PDO($dsn, $username, $password, [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]);
+        } catch (PDOException $e) {
+            // Database connection error response
+            Response::json([
+                'status' => 'error',
+                'message' => 'Database connection failed.',
+                'data' => ['error' => $e->getMessage()]
+            ], Response::SERVER_ERROR);
+            exit;
+        }
+        
+    }
+    public function query($query){
+        try {
+            $statement = $this->connection->prepare($query);
+            return $statement;
+        } catch (PDOException $e) {
+            // Handle query execution errors
+            Response::json([
+                'status' => 'error',
+                'message' => 'Database query failed.',
+                'data' => ['error' => $e->getMessage()]
+            ], Response::SERVER_ERROR);
+            exit;
+        }
+    }
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>Complete List of Routes</h2>
+
+            <h3>App/Core/routes.php</h3>
+            <pre class="code-block"><code>// Lehrbetriebe
+$router->get('/lehrbetriebe', 'App/Controllers/lehrbetriebe/index.php');
+$router->post('/lehrbetriebe', 'App/Controllers/lehrbetriebe/create.php');
+$router->get('/lehrbetriebe/{id}', 'App/Controllers/lehrbetriebe/read.php');
+$router->put('/lehrbetriebe/{id}', 'App/Controllers/lehrbetriebe/update.php');
+$router->delete('/lehrbetriebe/{id}', 'App/Controllers/lehrbetriebe/delete.php');
+
+// Lernende
+$router->get('/lernende', 'App/Controllers/lernende/index.php');
+$router->post('/lernende', 'App/Controllers/lernende/create.php');
+$router->get('/lernende/{id}', 'App/Controllers/lernende/read.php');
+$router->put('/lernende/{id}', 'App/Controllers/lernende/update.php');
+$router->delete('/lernende/{id}', 'App/Controllers/lernende/delete.php');
+
+// Lehrbetrieb_Lernende
+$router->get('/lehrbetrieb_lernende', 'App/Controllers/lehrbetrieb_lernende/index.php');
+$router->post('/lehrbetrieb_lernende', 'App/Controllers/lehrbetrieb_lernende/create.php');
+$router->get('/lehrbetrieb_lernende/{id}', 'App/Controllers/lehrbetrieb_lernende/read.php');
+$router->put('/lehrbetrieb_lernende/{id}', 'App/Controllers/lehrbetrieb_lernende/update.php');
+$router->delete('/lehrbetrieb_lernende/{id}', 'App/Controllers/lehrbetrieb_lernende/delete.php');
+
+// Länder
+$router->get('/laender', 'App/Controllers/laender/index.php');
+$router->post('/laender', 'App/Controllers/laender/create.php');
+$router->get('/laender/{id}', 'App/Controllers/laender/read.php');
+$router->put('/laender/{id}', 'App/Controllers/laender/update.php');
+$router->delete('/laender/{id}', 'App/Controllers/laender/delete.php');
+
+// Dozenten
+$router->get('/dozenten', 'App/Controllers/dozenten/index.php');
+$router->post('/dozenten', 'App/Controllers/dozenten/create.php');
+$router->get('/dozenten/{id}', 'App/Controllers/dozenten/read.php');
+$router->put('/dozenten/{id}', 'App/Controllers/dozenten/update.php');
+$router->delete('/dozenten/{id}', 'App/Controllers/dozenten/delete.php');
+
+// Kurse
+$router->get('/kurse', 'App/Controllers/kurse/index.php');
+$router->post('/kurse', 'App/Controllers/kurse/create.php');
+$router->get('/kurse/{id}', 'App/Controllers/kurse/read.php');
+$router->put('/kurse/{id}', 'App/Controllers/kurse/update.php');
+$router->delete('/kurse/{id}', 'App/Controllers/kurse/delete.php');
+
+// Kurse_Lernende
+$router->get('/kurse_lernende', 'App/Controllers/kurse_lernende/index.php');
+$router->post('/kurse_lernende', 'App/Controllers/kurse_lernende/create.php');
+$router->get('/kurse_lernende/{id}', 'App/Controllers/kurse_lernende/read.php');
+$router->put('/kurse_lernende/{id}', 'App/Controllers/kurse_lernende/update.php');
+$router->delete('/kurse_lernende/{id}', 'App/Controllers/kurse_lernende/delete.php');
+
+// Benutzer
+$router->get('/benutzer', 'App/Controllers/benutzer/index.php');
+$router->post('/benutzer', 'App/Controllers/benutzer/create.php');
+$router->get('/benutzer/{id}', 'App/Controllers/benutzer/read.php');
+$router->put('/benutzer/{id}', 'App/Controllers/benutzer/update.php');
+$router->put('/benutzer/{id}', 'App/Controllers/benutzer/update.php');</code></pre>
+            
+            <h3>App/Core/routes.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+// Define resource paths
+$resources = [
+    "lehrbetriebe" => "App/Controllers/lehrbetriebe",
+    "lernende" => "App/Controllers/lernende",
+    "lehrbetrieb_lernende" => "App/Controllers/lehrbetrieb_lernende",
+    "laender" => "App/Controllers/laender",
+    "dozenten" => "App/Controllers/dozenten",
+    "kurse" => "App/Controllers/kurse",
+    "kurse_lernende" => "App/Controllers/kurse_lernende",
+    "benutzer" => "App/Controllers/benutzer"
+];
+
+// Define routes for each resource
+foreach ($resources as $resource => $resource_path) {
+    $router->get("/{$resource}", "{$resource_path}/index.php");
+    $router->post("/{$resource}", "{$resource_path}/create.php");
+    $router->get("/{$resource}/{id}", "{$resource_path}/read.php");
+    $router->put("/{$resource}/{id}", "{$resource_path}/update.php");
+    $router->delete("/{$resource}/{id}", "{$resource_path}/delete.php");
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>Create</h2>
+
+            <h3>App/Controllers/ lehrbetriebe/ create.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+// Read the raw JSON input
+$input = json_decode(file_get_contents('php://input'), true);
+
+// Sanitize inputs using htmlspecialchars to prevent HTML special characters in the database
+$firma = htmlspecialchars($input['firma'] ?? '', ENT_QUOTES, 'UTF-8');
+$strasse = htmlspecialchars($input['strasse'] ?? '', ENT_QUOTES, 'UTF-8');
+$plz = htmlspecialchars($input['plz'] ?? '', ENT_QUOTES, 'UTF-8');
+$ort = htmlspecialchars($input['ort'] ?? '', ENT_QUOTES, 'UTF-8');
+
+// Initial validation: check for empty fields
+$errors = [];
+if (empty($firma)) $errors['firma'] = 'Firma is required.';
+if (empty($strasse)) $errors['strasse'] = 'Strasse is required.';
+if (empty($plz)) $errors['plz'] = 'PLZ is required.';
+if (empty($ort)) $errors['ort'] = 'Ort is required.';
+
+if (!empty($errors)) {
+    // Send error response in JSON format with a 400 Bad Request status
+    Response::json([
+        'status' => 'error',
+        'message' => 'Bad request',
+        'data' => $errors
+    ], Response::BAD_REQUEST);
+    exit;
+}
+
+// Insert data into the database
+$query = 'INSERT INTO tbl_lehrbetrieb (firma, strasse, plz, ort) VALUES (:firma, :strasse, :plz, :ort)';
+
+try {
+    $stmt = $db->query($query);
+    $stmt->execute([
+        ':firma' => $firma,
+        ':strasse' => $strasse,
+        ':plz' => $plz,
+        ':ort' => $ort
+    ]);
+
+    // Send success response in JSON format with a 201 Created status
+    Response::json([
+        'status' => 'success',
+        'message' => 'Lehrbetrieb created successfully!'
+    ], Response::CREATED);
+} catch (Exception $e) {
+    // Handle unexpected errors with a 500 Internal Server Error response
+    Response::json([
+        'status' => 'error',
+        'message' => 'An error occurred while creating the lehrbetrieb',
+        'data' => ['error' => $e->getMessage()]
+    ], Response::SERVER_ERROR);
+}</code></pre>
+            
+        </article>
+
+        <article>
+
+            <h2>Read</h2>
+            <h3>App/Controllers/ lehrbetriebe/ read.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+// Check if 'id' is set in $params and is a valid integer
+if (isset($params['id']) && ctype_digit($params['id'])) {
+    $id = (int) $params['id'];
+
+    try {
+        // Prepare and execute the query to find the lehrbetrieb by id
+        $query = 'SELECT * FROM tbl_lehrbetrieb WHERE id_lehrbetrieb = :id';
+
+        // Execute the query through the Database class
+        $stmt = $db->query($query);
+        $stmt->execute([':id' => $id]);
+        $lehrbetrieb = $stmt->fetch();
+
+        if ($lehrbetrieb) {
+            // Send success response with the found record
+            Response::json([
+                'status' => 'success',
+                'message' => 'Lehrbetrieb found',
+                'data' => $lehrbetrieb
+            ], Response::OK);
+        } else {
+            // Send a 404 Not Found response if no record is found
+            Response::json([
+                'status' => 'error',
+                'message' => 'Lehrbetrieb not found'
+            ], Response::NOT_FOUND);
+        }
+    } catch (Exception $e) {
+        // Handle unexpected errors with a 500 Internal Server Error response
+        Response::json([
+            'status' => 'error',
+            'message' => 'An error occurred while retrieving the lehrbetrieb'
+        ], Response::SERVER_ERROR);
+    }
+} else {
+    // Send a 400 Bad Request response if 'id' is missing or invalid
+    Response::json([
+        'status' => 'error',
+        'message' => 'Invalid ID parameter'
+    ], Response::BAD_REQUEST);
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>Read all</h2>
+            <h3>App/Controllers/ lehrbetriebe/ index.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+try {
+    // Query to select all lehrbetriebe
+    $query = 'SELECT * FROM tbl_lehrbetrieb';
+    $stmt = $db->query($query);
+    $stmt->execute();
+
+    // Fetch all records
+    $lehrbetriebe = $stmt->fetchAll();
+
+    // Send success response with the records
+    Response::json([
+        'status' => 'success',
+        'message' => 'Lehrbetriebe retrieved successfully',
+        'data' => $lehrbetriebe
+    ], Response::OK);
+} catch (Exception $e) {
+    // Handle unexpected errors with a 500 Internal Server Error response
+    Response::json([
+        'status' => 'error',
+        'message' => 'An error occurred while retrieving lehrbetriebe',
+        'data' => ['error' => $e->getMessage()]
+    ], Response::SERVER_ERROR);
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>Update</h2>
+            <h3>App/Controllers/ lehrbetriebe/ update.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+// Check if 'id' is set in $params and is a valid integer
+if (isset($params['id']) && ctype_digit($params['id'])) {
+    $id = (int) $params['id'];
+
+    try {
+        // Read the raw JSON input
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        // Initialize an array to store the fields to update
+        $fieldsToUpdate = [];
+        $params = [];
+
+        // Check each field and add to the update list if provided
+        if (isset($input['firma'])) {
+            $fieldsToUpdate[] = 'firma = :firma';
+            $params[':firma'] = htmlspecialchars($input['firma'], ENT_QUOTES, 'UTF-8');
+        }
+        if (isset($input['strasse'])) {
+            $fieldsToUpdate[] = 'strasse = :strasse';
+            $params[':strasse'] = htmlspecialchars($input['strasse'], ENT_QUOTES, 'UTF-8');
+        }
+        if (isset($input['plz'])) {
+            $fieldsToUpdate[] = 'plz = :plz';
+            $params[':plz'] = htmlspecialchars($input['plz'], ENT_QUOTES, 'UTF-8');
+        }
+        if (isset($input['ort'])) {
+            $fieldsToUpdate[] = 'ort = :ort';
+            $params[':ort'] = htmlspecialchars($input['ort'], ENT_QUOTES, 'UTF-8');
+        }
+
+        // If no fields are provided, send a 400 Bad Request response
+        if (empty($fieldsToUpdate)) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'No fields to update'
+            ], Response::BAD_REQUEST);
+            exit;
+        }
+
+        // Add the ID to the params for the WHERE clause
+        $params[':id'] = $id;
+
+        // Construct the SQL query with dynamic SET clause
+        $query = 'UPDATE tbl_lehrbetrieb SET ' . implode(', ', $fieldsToUpdate) . ' WHERE id_lehrbetrieb = :id';
+        
+        // Execute the query through the Database class
+        $stmt = $db->query($query);
+        $stmt->execute($params);
+
+        // Send a success response
+        Response::json([
+            'status' => 'success',
+            'message' => 'Lehrbetrieb updated successfully!'
+        ], Response::OK);
+
+    } catch (Exception $e) {
+        // Handle unexpected errors with a 500 Internal Server Error response
+        Response::json([
+            'status' => 'error',
+            'message' => 'An error occurred while updating the lehrbetrieb'
+        ], Response::SERVER_ERROR);
+    }
+} else {
+    // Send a 400 Bad Request response if 'id' is missing or invalid
+    Response::json([
+        'status' => 'error',
+        'message' => 'Invalid ID parameter'
+    ], Response::BAD_REQUEST);
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>JOIN</h2>
+            <h3>App/Controllers/ lehrbetrieb_lernende/ index.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+try {
+    // Define the SQL query with joins for foreign key relationships
+    $query = '
+        SELECT ll.*, l.firma, l.strasse, l.plz, l.ort, lern.nachname, lern.vorname, land.country
+        FROM tbl_lehrbetrieb_lernende AS ll
+        JOIN tbl_lehrbetrieb AS l ON ll.fk_lehrbetrieb = l.id_lehrbetrieb
+        JOIN tbl_lernende AS lern ON ll.fk_lernende = lern.id_lernende
+        JOIN tbl_countries AS land ON lern.fk_land = land.id_countries
+    ';
+
+    // Execute the query
+    $stmt = $db->query($query);
+    $stmt->execute();
+
+    $results = $stmt->fetchAll();
+
+    // Check if results were found
+    if ($results) {
+        Response::json([
+            'status' => 'success',
+            'message' => 'Entries retrieved successfully',
+            'data' => $results
+        ], Response::OK);
+    } else {
+        // No entries found
+        Response::json([
+            'status' => 'error',
+            'message' => 'No entries found'
+        ], Response::NOT_FOUND);
+    }
+} catch (Exception $e) {
+    // Handle unexpected errors with a 500 Internal Server Error response
+    Response::json([
+        'status' => 'error',
+        'message' => 'An error occurred while retrieving entries'
+    ], Response::SERVER_ERROR);
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>Foreign keys</h2>
+            <h3>App/Controllers/ lehrbetrieb_lernende/ create.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+// Parse input JSON
+$input = json_decode(file_get_contents('php://input'), true);
+
+// Extract and validate inputs
+$fk_lehrbetrieb = $input['fk_lehrbetrieb'] ?? null;
+$fk_lernende = $input['fk_lernende'] ?? null;
+$start_date = htmlspecialchars($input['start_date'] ?? '', ENT_QUOTES, 'UTF-8');
+$end_date = htmlspecialchars($input['end_date'] ?? '', ENT_QUOTES, 'UTF-8');
+
+// Check required fields
+$errors = [];
+if (!$fk_lehrbetrieb || !ctype_digit($fk_lehrbetrieb)) {
+    $errors['fk_lehrbetrieb'] = 'Valid fk_lehrbetrieb is required.';
+}
+if (!$fk_lernende || !ctype_digit($fk_lernende)) {
+    $errors['fk_lernende'] = 'Valid fk_lernende is required.';
+}
+if (empty($start_date)) {
+    $errors['start_date'] = 'Start date is required.';
+}
+if (!empty($errors)) {
+    Response::json([
+        'status' => 'error',
+        'message' => 'Invalid input',
+        'data' => $errors
+    ], Response::BAD_REQUEST);
+    exit;
+}
+
+try {
+    // Validate foreign key existence in lehrbetrieb table
+    $stmt = $db->query('SELECT COUNT(*) FROM tbl_lehrbetrieb WHERE id_lehrbetrieb = :id');
+    $stmt->execute([':id' => $fk_lehrbetrieb]);
+    if ($stmt->fetchColumn() == 0) {
+        Response::json([
+            'status' => 'error',
+            'message' => "Lehrbetrieb with ID $fk_lehrbetrieb does not exist."
+        ], Response::BAD_REQUEST);
+        exit;
+    }
+
+    // Validate foreign key existence in lernende table
+    $stmt = $db->query('SELECT COUNT(*) FROM tbl_lernende WHERE id_lernende = :id');
+    $stmt->execute([':id' => $fk_lernende]);
+    if ($stmt->fetchColumn() == 0) {
+        Response::json([
+            'status' => 'error',
+            'message' => "Lernende with ID $fk_lernende does not exist."
+        ], Response::BAD_REQUEST);
+        exit;
+    }
+
+    // Insert the lehrbetrieb_lernende entry
+    $query = 'INSERT INTO tbl_lehrbetrieb_lernende (fk_lehrbetrieb, fk_lernende, start_date, end_date) 
+            VALUES (:fk_lehrbetrieb, :fk_lernende, :start_date, :end_date)';
+    $stmt = $db->query($query);
+    $stmt->execute([
+        ':fk_lehrbetrieb' => $fk_lehrbetrieb,
+        ':fk_lernende' => $fk_lernende,
+        ':start_date' => $start_date,
+        ':end_date' => $end_date
+    ]);
+
+    // Success response
+    Response::json([
+        'status' => 'success',
+        'message' => 'Lehrbetrieb_lernende created successfully!'
+    ], Response::CREATED);
+} catch (Exception $e) {
+    // Handle unexpected errors with a generic error message
+    Response::json([
+        'status' => 'error',
+        'message' => 'An error occurred while creating the entry.'
+    ], Response::SERVER_ERROR);
+}</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2>Authentication: API Key</h2>
+
+            <h3>SQL</h3>
+            <pre class="code-block"><code>CREATE TABLE tbl_benutzer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    api_key VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+            <h3>App/Core/routes.php</h3>
+            <pre class="code-block"><code>// Define resource paths
+$resources = [
+    "lehrbetriebe" => "App/Controllers/lehrbetriebe",
+    "lernende" => "App/Controllers/lernende",
+    "lehrbetrieb_lernende" => "App/Controllers/lehrbetrieb_lernende",
+    "laender" => "App/Controllers/laender",
+    "dozenten" => "App/Controllers/dozenten",
+    "kurse" => "App/Controllers/kurse",
+    "kurse_lernende" => "App/Controllers/kurse_lernende",
+    "benutzer" => "App/Controllers/benutzer"
+];</code></pre>
+
+            <h3>App/Controllers/users/create.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\DatabaseConnection;
+use App\Core\Response;
+
+// Get the database connection
+$db = DatabaseConnection::getDatabase();
+
+// Parse input JSON
+$input = json_decode(file_get_contents('php://input'), true);
+
+// Extract and validate inputs
+$username = htmlspecialchars($input['username'] ?? '', ENT_QUOTES, 'UTF-8');
+
+// Check required fields
+$errors = [];
+if (empty($username)) {
+    $errors['username'] = 'Username is required.';
+}
+if (!empty($errors)) {
+    Response::json([
+        'status' => 'error',
+        'message' => 'Invalid input',
+        'data' => $errors
+    ], Response::BAD_REQUEST);
+    exit;
+}
+
+// Generate and hash API key
+$apiKey = bin2hex(random_bytes(32));  // The actual API key the user will receive
+$hashedApiKey = password_hash($apiKey, PASSWORD_DEFAULT); // Hashed version for storage
+
+try {
+    // Insert the new user with the hashed API key
+    $query = 'INSERT INTO tbl_benutzer (username, api_key) VALUES (:username, :api_key)';
+    $stmt = $db->prepare($query);
+    $stmt->execute([
+        ':username' => $username,
+        ':api_key' => $hashedApiKey
+    ]);
+
+    // Success response with only the plain API key
+    Response::json([
+        'status' => 'success',
+        'message' => 'User created successfully!',
+        'data' => [
+            'username' => $username,
+            'api_key' => $apiKey  // Return only the plain API key here
+        ]
+    ], Response::CREATED);
+} catch (Exception $e) {
+    // Handle unexpected errors with a generic error message
+    Response::json([
+        'status' => 'error',
+        'message' => 'An error occurred while creating the user.'
+    ], Response::SERVER_ERROR);
+}</code></pre>
+
+            <h3>POST https://api.test/benutzer</h3>
+            <pre class="code-block"><code>{
+    "username": "nano"
+}</code></pre>
+            <pre class="code-block"><code>{
+    "status": "success",
+    "message": "User created successfully!",
+    "data": {
+        "username": "nano",
+        "api_key": "332386775e9f4e3e573f39a98ce9a696cff31c8ba384407994887ff75ef0f667"
+    }
+}</code></pre>
+
+            <h3>App/Core/Authenticator.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+
+class Authenticator
+{
+    public static function authenticate()
+    {
+        // Get the database connection
+        $db = DatabaseConnection::getDatabase();
+
+        // Retrieve API key from the headers
+        $headers = getallheaders();
+        $providedApiKey = $headers['X-API-Key'] ?? '';
+
+        // Check if API key is provided
+        if (empty($providedApiKey)) {
+            self::unauthorizedResponse('API key is missing.');
+        }
+
+        // Retrieve the stored hashed API key from the database
+        $stmt = $db->query('SELECT api_key FROM tbl_benutzer LIMIT 1');
+        $stmt->execute();
+        $storedHashedApiKey = $stmt->fetchColumn();
+
+        // Verify the provided API key against the stored hashed API key
+        if (!$storedHashedApiKey || !password_verify($providedApiKey, $storedHashedApiKey)) {
+            self::unauthorizedResponse('Invalid API key.');
+        }
+    }
+
+    private static function unauthorizedResponse($message)
+    {
+        Response::json([
+            'status' => 'error',
+            'message' => $message
+        ], Response::UNAUTHORIZED);
+        exit;
+    }
+}</code></pre>
+
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\Database;
+use App\Core\Router;
+use App\Core\Authenticator;
+
+const BASE_PATH = __DIR__ . "/../";
+
+require str_replace('/', DIRECTORY_SEPARATOR, BASE_PATH  . 'App/Core/functions.php');
+
+spl_autoload_register(function($class){
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require base_path("$class.php");
+});
+
+// Authenticate the request
+Authenticator::authenticate();  // &lt;-- Add this line
+
+// Extracts the URL path without the query string
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
+
+// Initialize router and load routes
+$router = new Router();
+$routes = require base_path('App/Core/routes.php');
+
+// Route the request
+$router->route($path, $method);</code></pre>
+
+            <h3>GET https://api.test/lehrbetrieb_lernende</h3>
+            <p>Auth Type: API Key | Key X-API-Key | Value 332386775e9f4e3e573f39a98ce9a696cff31c8ba384407994887ff75ef0f667 | Add to Header</p>
+
+        </article>
+
+        <article>
+
+            <h2>JWT Tokens: Basics</h2>
+            <p><span class="blue-text">header</span>.<span class="red-text">payload</span>.<span class="green-text">signature</span></p>
+            <pre class="code-block"><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></pre>
+            
+            <h3 class="blue-text">header</h3>
+            <p>base64url encode</p>
+            <p><a href="https://www.base64decode.org/" target="_blank" rel="noopener noreferrer">https://www.base64decode.org/</a></p>
+            <p><a href="https://base64.guru/standards/base64url" target="_blank" rel="noopener noreferrer">https://base64.guru/standards/base64url</a></p>
+            <p>signing algorithm: HS256 - HMAC SHA-256</p>
+            <p>token type: JWT</p>
+            <pre class="code-block"><code>{
+    "alg": "HS256",
+    "typ": "JWT"
+}</code></pre>
+
+            <h3 class="red-text">payload</h3>
+            <p>base64url encode</p>
+            <p>claims (information) you want to transmit, like the user ID, role, and token expiration time | iss (issuer), exp (expiration), sub (subject)</p>
+
+            <h3 class="green-text">signature</h3>
+            <p>hash</p>
+            <p>base64url encode</p>
+            <p><span class="blue-text">header</span>, <span class="red-text">payload</span>, secret key</p>
+
+        </article>
+
+        <article>
+
+            <h2>JWT Tokens: Implementation</h2>
+
+            <h3>public/index.php</h3>
+            <pre class="code-block"><code>&lt;?php
+// Add CORS headers to allow requests from other origins (modify as needed for production)
+// Allow all origins (wildcard)
+header("Access-Control-Allow-Origin: *");
+// Allow specific methods (GET, POST, PUT, DELETE, OPTIONS)
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+// Allow specific headers (including Authorization)
+header("Access-Control-Allow-Headers: Authorization, Content-Type");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+use App\Core\Login;
+use App\Core\Register;
+use App\Core\Router;
+use App\Core\Authenticator;
+
+const BASE_PATH = __DIR__ . "/../";
+
+require str_replace('/', DIRECTORY_SEPARATOR, BASE_PATH  . 'App/Core/functions.php');
+
+spl_autoload_register(function($class){
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require base_path("$class.php");
+});
+
+// Extracts the URL path without the query string
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
+
+// Handle the login route separately (no token needed)
+if ($path === '/login' && $method === 'POST') {
+    // Parse the JSON input
+    $input = json_decode(file_get_contents('php://input'), true);
+    $username = $input['username'] ?? '';
+    $password = $input['password'] ?? '';
+    
+    // Perform authentication
+    Login::authenticate($username, $password);
+    exit;
+}
+
+// Handle the register route
+if ($path === '/register' && $method === 'POST') {
+    // Parse the JSON input
+    $input = json_decode(file_get_contents('php://input'), true);
+    $username = $input['username'] ?? '';
+    $email = $input['email'] ?? '';
+    $password = $input['password'] ?? '';
+
+    // Call the Register class to handle user creation
+    Register::registerUser($username, $email, $password);
+    exit;
+}
+
+
+// JWT
+// Get the Authorization header
+$headers = getallheaders();
+$authHeader = $headers['Authorization'] ?? '';
+// Authenticate the request
+$decodedToken = Authenticator::validateToken($authHeader);
+// Stop further processing if authorization fails
+if (!$decodedToken) {
+    exit; // Prevent further processing if unauthorized
+}
+
+
+// Initialize router and load routes
+$router = new Router();
+$routes = require base_path('App/Core/routes.php');
+
+// Route the request
+$router->route($path, $method);</code></pre>
+            
+            <h3>/.env</h3>
+            <pre class="code-block"><code>DB_HOST=localhost
+DB_NAME=kursverwaltung
+DB_USER=root
+DB_PASSWORD=
+
+JWT_SECRET_KEY=9a4b7c3f2c8f87a5125ff9b8e13f876ecadf7c634dfb8ff3c4f6a8f97c6d9d39
+JWT_EXPIRATION=3600</code></pre>
+
+            <h3>/database.sql</h3>
+            <pre class="code-block"><code>CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Auto-increment primary key
+    username VARCHAR(255) NOT NULL UNIQUE, -- Username, unique for each user
+    email VARCHAR(255) NOT NULL UNIQUE, -- Email, unique for each user
+    password VARCHAR(255) NOT NULL, -- Hashed password
+    role ENUM('admin', 'user', 'guest') DEFAULT 'user', -- User role with a default of 'user'
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Creation timestamp
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Update timestamp
+    deleted_at TIMESTAMP NULL DEFAULT NULL -- Soft delete field, if needed
+);</code></pre>
+
+            <h3>App/Core/config.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+use App\Core\LoadEnv;
+
+LoadEnv::load(base_path('.env'));
+
+return [
+    'database' => [
+        'host' => $_ENV['DB_HOST'],
+        'port' => '3306',
+        'dbname' => $_ENV['DB_NAME'],
+        'user' => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'charset' => 'utf8mb4',
+    ],
+    'jwt' => [
+        'secret_key' => $_ENV['JWT_SECRET_KEY'],
+        'expiration' => $_ENV['JWT_EXPIRATION']
+    ],
+];</code></pre>
+
+            <h3>App/Core/Login.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+
+class Login
+{
+    public static function authenticate($username, $password)
+    {
+        // Get the database connection
+        $db = DatabaseConnection::getDatabase();
+
+        // Query for the user by username
+        $stmt = $db->query('SELECT id, password, role FROM tbl_users WHERE username = :username LIMIT 1');
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+
+        // Check if the user exists and the password is correct
+        if (!$user || !password_verify($password, $user['password'])) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Invalid username or password.'
+            ], Response::UNAUTHORIZED);
+            return;
+        }
+
+        // Create JWT payload with the user ID and other claims
+        $payload = [
+            'sub' => $user['id'],              // subject (user ID)
+            'role' => $user['role'],           // user role (admin, user, etc.)
+            'iat' => time(),                   // issued at
+            'exp' => time() + 3600             // expiration (1 hour)
+        ];
+
+        // Encode the payload to get the JWT
+        $jwt = JWT::encode($payload);
+
+        // Respond with the token
+        Response::json([
+            'status' => 'success',
+            'message' => 'Login successful.',
+            'token' => $jwt
+        ], Response::OK);
+    }
+}</code></pre>
+
+            <h3>App/Core/Authenticator.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+
+class Authenticator
+{
+    /**
+     * Validates the JWT token in the Authorization header and checks if it's valid.
+     *
+     * @param string $authHeader The Authorization header containing the Bearer token.
+     * @return array The decoded token payload if valid, otherwise returns an error response.
+     */
+    public static function validateToken(string $authHeader): array
+    {
+        // Check if the Authorization header is provided
+        if (empty($authHeader)) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Authorization header missing'
+            ], Response::UNAUTHORIZED);
+            return [];
+        }
+
+        // Extract the token from the Authorization header
+        if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+            $token = $matches[1];
+        } else {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Invalid token format. Bearer token required.'
+            ], Response::UNAUTHORIZED);
+            return null;
+        }
+
+        // Decode and verify the token
+        $decoded = JWT::decode($token);
+
+        // If decoding failed or the token is invalid, respond with an error
+        if (empty($decoded)) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Invalid or expired token'
+            ], Response::UNAUTHORIZED);
+            return null;
+        }
+
+        // Optionally, additional user authorization checks can go here, e.g., user roles or permissions.
+
+        // Return the decoded payload if valid
+        return $decoded;
+    }
+
+    /**
+     * Verifies if the user has the required role for access to a specific resource.
+     *
+     * @param array $decoded The decoded JWT payload.
+     * @param string $requiredRole The required role for access.
+     * @return bool True if the user has the required role, otherwise false.
+     */
+    public static function hasRole(array $decoded, string $requiredRole): bool
+    {
+        // Check if the decoded token contains a role field
+        return isset($decoded['role']) && $decoded['role'] === $requiredRole;
+    }
+}</code></pre>
+
+            <h3>App/Core/JWT.php</h3>
+            <pre class="code-block"><code>&lt;?php
+
+namespace App\Core;
+
+class JWT
+{
+    private static string $secret;
+
+    /**
+     * Initialize JWT configuration
+     */
+    public static function init()
+    {
+        $config = require base_path('App/Core/config.php');
+        self::$secret = $config['jwt']['secret_key'];
+    }
+
+    /**
+     * Encodes a payload to generate a JWT token
+     *
+     * @param array $payload The payload to encode (e.g., user data and claims)
+     * @param string $secret The secret key for signing the token
+     * @param string $algorithm The algorithm used for signing (default is HS256)
+     * @return string The generated JWT token
+     */
+    public static function encode(array $payload, string $algorithm = 'HS256'): string
+    {
+        if (empty(self::$secret)) {
+            self::init();
+        }
+
+        // Define the supported algorithms and their corresponding hash algorithms
+        $supported_algs = [
+            'HS256' => 'sha256',
+            'HS384' => 'sha384',
+            'HS512' => 'sha512',
+        ];
+
+        // Check if the selected algorithm is supported
+        if (!isset($supported_algs[$algorithm])) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Unsupported algorithm'
+            ], Response::SERVER_ERROR);
+            return '';
+        }
+
+        // Create the header with the algorithm information
+        $header = [
+            'alg' => $algorithm,
+            'typ' => 'JWT',
+        ];
+
+        // Base64Url encode the header and payload
+        $base64UrlHeader = self::base64UrlEncode(json_encode($header));
+        $base64UrlPayload = self::base64UrlEncode(json_encode($payload));
+
+        // Create the signature using the specified algorithm and secret key
+        $signature = hash_hmac($supported_algs[$algorithm], "$base64UrlHeader.$base64UrlPayload", self::$secret, true);
+        $base64UrlSignature = self::base64UrlEncode($signature);
+
+        // Concatenate the parts to form the final token
+        return "$base64UrlHeader.$base64UrlPayload.$base64UrlSignature";
+    }
+
+    /**
+     * Decodes and verifies a JWT token
+     *
+     * @param string $token The JWT token to decode
+     * @param string $secret The secret key used to verify the token
+     * @param string $algorithm The algorithm used for signing (default is HS256)
+     * @return array The decoded payload if valid, otherwise an error response
+     */
+    public static function decode(string $token, string $algorithm = 'HS256'): array
+    {
+        // Load secret key from config
+        if (empty(self::$secret)) {
+            self::init();
+        }
+
+        // Split the token into header, payload, and signature
+        $parts = explode('.', $token);
+        if (count($parts) !== 3) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Invalid token format'
+            ], Response::BAD_REQUEST);
+            return [];
+        }
+    
+        [$base64UrlHeader, $base64UrlPayload, $base64UrlSignature] = $parts;
+    
+        // Decode header and payload
+        $header = json_decode(self::base64UrlDecode($base64UrlHeader), true);
+        $payload = json_decode(self::base64UrlDecode($base64UrlPayload), true);
+    
+        // Validate algorithm
+        if ($header['alg'] !== $algorithm) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Algorithm not allowed'
+            ], Response::FORBIDDEN);
+            return [];
+        }
+    
+        // Verify the signature
+        $supported_algs = [
+            'HS256' => 'sha256',
+            'HS384' => 'sha384',
+            'HS512' => 'sha512',
+        ];
+        // Verify the signature
+        $expectedSignature = self::base64UrlEncode(hash_hmac($supported_algs[$algorithm], "$base64UrlHeader.$base64UrlPayload", self::$secret, true));
+        if ($base64UrlSignature !== $expectedSignature) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Invalid token signature'
+            ], Response::UNAUTHORIZED);
+            return [];
+        }
+    
+        // Check for expiration
+        if (isset($payload['exp']) && $payload['exp'] &lt; time()) {
+            Response::json([
+                'status' => 'error',
+                'message' => 'Token has expired'
+            ], Response::UNAUTHORIZED);
+            return [];
+        }
+    
+        return $payload;
+    }
+    
+    /**
+     * Base64 URL encode a string
+     *
+     * @param string $data The data to encode
+     * @return string The base64 URL encoded string
+     */
+    private static function base64UrlEncode(string $data): string
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+    
+    /**
+     * Base64 URL decode a string
+     *
+     * @param string $data The data to decode
+     * @return string The decoded string
+     */
+    private static function base64UrlDecode(string $data): string
+    {
+        return base64_decode(strtr($data, '-_', '+/'));
+    }
+}</code></pre>
+
+            <h3>index.html</h3>
+            <p>remove cors header</p>
+            <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;API Test&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;API Authorization Test&lt;/h1&gt;
+    &lt;button onclick="testApi()"&gt;Test API&lt;/button&gt;
+
+    &lt;script&gt;
+        function testApi() {
+            fetch('https://api.test/lehrbetriebe', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzMxNzc1NDAxLCJleHAiOjE3MzE3NzkwMDF9.MeDGxADNqDI2j4gn90DwO9BqjVFDOrPGtei1Zr5WNmA',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response =&gt; response.json())
+                .then(data =&gt; console.log(data))
+                .catch(error =&gt; console.error('Error:', error));
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+        </article>
+
+        <article>
+
+            <h2></h2>
+            <p></p>
+            <h3></h3>
+            <p></p>
+            <pre class="code-block"><code></code></pre>
+            <pre class="code-block"><code></code></pre>
+
+        </article>
+
+        <article>
+
+            <h2></h2>
+            <p></p>
+            <h3></h3>
+            <p></p>
+            <pre class="code-block"><code></code></pre>
+            <pre class="code-block"><code></code></pre>
+
+        </article>
+
+    </main>
+
+    <footer>
+
+        <a href="https://www.reshot.com/free-svg-icons/" target="_blank"
+            rel="noopener noreferrer">https://www.reshot.com/free-svg-icons/</a>
+        <a href="./404.html">404.html</a>
+
+    </footer>
+
+</body>
+
+</html>
