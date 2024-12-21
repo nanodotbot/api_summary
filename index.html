@@ -1411,6 +1411,27 @@ try {
 
         <article>
 
+            <h2>Postman to Openapi</h2>
+            <p>create openapi documentation from Postman collections</p>
+            <p><a href="https://www.postman.com/postman/postman-public-workspace/documentation/1blkypo/postman-to-openapi" target="_blank" rel="noopener noreferrer">https://www.postman.com/postman/postman-public-workspace/documentation/1blkypo/postman-to-openapi</a></p>
+            
+            <h3>Generate a Postman API key</h3>
+            <p>in settings, only online available, not in the app</p>
+            <p><a href="https://web.postman.co/settings/me/api-keys" target="_blank" rel="noopener noreferrer">https://web.postman.co/settings/me/api-keys</a></p>
+
+            <h3>Get Collection ID</h3>
+            <p>Fetch the ID of the Collection you wish to convert. This can be found by selecting the Collection in Postman, navigating to the right-hand sidebar, clicking the Info tab (symbolized by the i icon), and copying the ID.</p>
+            <div><img src="imgs/postman-openapi-id.png" alt="postman-openapi-id"></div>
+
+            <h3>GET request</h3>
+            <p>Update the Current value for the associated collection variables in this Collection with the Postman API key and Collection ID you just retrieved.</p>
+            <p>Run the Generate an OpenAPI Schema request. In the response pane, click Visualize.</p>
+            <p>GET <a href="https://api.getpostman.com/collections/:collectionId" target="_blank" rel="noopener noreferrer">https://api.getpostman.com/collections/:collectionId</a></p>
+
+        </article>
+
+        <article>
+
             <h2>Authentication: API Key</h2>
 
             <h3>SQL</h3>
@@ -2039,17 +2060,6 @@ class JWT
 &lt;/body&gt;
 
 &lt;/html&gt;</code></pre>
-
-        </article>
-
-        <article>
-
-            <h2></h2>
-            <p></p>
-            <h3></h3>
-            <p></p>
-            <pre class="code-block"><code></code></pre>
-            <pre class="code-block"><code></code></pre>
 
         </article>
 
